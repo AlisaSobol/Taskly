@@ -1,35 +1,42 @@
-# Nuxt Minimal Starter
+# Taskly
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A kanban-style task board. Create columns, add tasks to them, and edit or delete both — built with Nuxt 4, Vue 3,
+Pinia, Nuxt UI, and PostgreSQL via Drizzle ORM.
 
 ## Setup
 
-Make sure to install dependencies:
-
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
 yarn install
-
-# bun
-bun install
-```
-
-Copy the env example and set `DATABASE_URL` to point at your Postgres instance:
-
-```bash
 cp .env.example .env
 ```
 
 ## Database
 
-This project uses PostgreSQL via [Drizzle ORM](https://orm.drizzle.team/). For local development you can run a
-project-local Postgres cluster (data stored in the gitignored `.data/` folder, so it never touches any other
+`.env` is gitignored and never shared, so anyone setting this project up fresh (a new machine, a collaborator)
+needs their own database. Skip this section if you already have a working `.env` — it's a one-time bootstrap step.
+
+Two connection strings are used:
+
+- `DATABASE_URL` — a **direct** connection, used for migrations and seeding (`yarn db:migrate`, `yarn db:seed`).
+- `DATABASE_URL_POOLED` — a **pooled** connection, used by the running app itself. Falls back to `DATABASE_URL`
+  when unset.
+
+### Option A: managed Postgres (recommended — e.g. [Neon](https://neon.tech))
+
+1. Create a project and database.
+2. Copy the direct connection string into `DATABASE_URL`, and the pooled/PgBouncer connection string into
+   `DATABASE_URL_POOLED` (Neon shows both — the pooled one has `-pooler` in the hostname). Using the pooled
+   string for the app avoids exhausting the provider's connection limit.
+3. Apply schema + sample data:
+
+```bash
+yarn db:migrate
+yarn db:seed
+```
+
+### Option B: local Postgres
+
+Run a project-local cluster (data stored in the gitignored `.data/` folder, so it never touches any other
 Postgres install on your machine):
 
 ```bash
@@ -42,7 +49,14 @@ yarn db:stop
 
 # create the database (one-time)
 psql -h 127.0.0.1 -p 5433 -U postgres -d postgres -c "CREATE DATABASE nuxt3_app;"
+```
 
+Point both `DATABASE_URL` and `DATABASE_URL_POOLED` (or just leave the latter unset) at
+`postgres://postgres@127.0.0.1:5433/nuxt3_app`, then run the same `yarn db:migrate` / `yarn db:seed` as above.
+
+### Everyday commands
+
+```bash
 # apply schema migrations
 yarn db:migrate
 
@@ -53,64 +67,22 @@ yarn db:seed
 yarn db:studio
 ```
 
-If you already have a Postgres server running elsewhere, just point `DATABASE_URL` at it instead and skip the
-`db:start`/`initdb` steps.
-
 After changing `server/database/schema.ts`, generate a new migration with `yarn db:generate` and apply it with
 `yarn db:migrate`.
 
-## Development Server
+## Development
 
-Start the development server on `http://localhost:3000`:
+Make sure your database is migrated (see above), then:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
 yarn dev
-
-# bun
-bun run dev
 ```
 
-Make sure your Postgres database is running and migrated first (see [Database](#database) above).
+Runs on `http://localhost:3000`.
 
 ## Production
 
-Build the application for production:
-
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
 yarn build
-
-# bun
-bun run build
+yarn preview   # locally preview the production build
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
