@@ -1,0 +1,103 @@
+{
+  "columns": [
+    {
+      "id": "todo",
+      "name": "Todo"
+    },
+    {
+      "id": "in-progress",
+      "name": "In Progress"
+    },
+    {
+      "id": "complete",
+      "name": "Complete"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "000000001",
+      "columnId": "complete",
+      "name": "Task 1",
+      "description": "Description"
+    },
+    {
+      "id": "000000002",
+      "columnId": "todo",
+      "name": "Task 2",
+      "description": "Description"
+    },
+    {
+      "id": "000000003",
+      "columnId": "todo",
+      "name": "Task 3",
+      "description": "Description"
+    },
+    {
+      "id": "000000004",
+      "columnId": "todo",
+      "name": "Task 4",
+      "description": "Description"
+    },
+    {
+      "id": "000000005",
+      "columnId": "in-progress",
+      "name": "Task 5",
+      "description": "Description"
+    },
+    {
+      "id": "000000006",
+      "columnId": "todo",
+      "name": "Task 6",
+      "description": "Description"
+    },
+    {
+      "id": "000000007",
+      "columnId": "complete",
+      "name": "Task 7",
+      "description": "Description"
+    },
+    {
+      "id": "000000008",
+      "columnId": "todo",
+      "name": "Task 8",
+      "description": "Description"
+    },
+    {
+      "id": "000000009",
+      "columnId": "in-progress",
+      "name": "Task 9",
+      "description": "Description"
+    },
+    {
+      "id": "000000010",
+      "columnId": "todo",
+      "name": "Task 10",
+      "description": "Description"
+    },
+    {
+      "id": "000000011",
+      "columnId": "todo",
+      "name": "Task 11",
+      "description": "Description"
+    },
+    {
+      "id": "000000012",
+      "columnId": "complete",
+      "name": "Task 12",
+      "description": "Description"
+    },
+    {
+      "id": "MNGlQl0chlc",
+      "columnId": "in-progress",
+      "name": "task 20",
+      "description": " bla"
+    },
+    {
+      "id": "YM71jGuBSR4",
+      "columnId": "in-progress",
+      "name": "sefsfsfesef 111",
+      "description": " aergawrg awreta wrtw tawe tg"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

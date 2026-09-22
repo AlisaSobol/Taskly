@@ -36,6 +36,9 @@ yarn dev
 
 # bun
 bun run dev
+
+# run mock server
+npx json-server mock-api/db.json --port 3001
 ```
 
 ## Production
